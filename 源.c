@@ -35,6 +35,6 @@ int main(void)
 	stu s[3] = { {"zhangsan",40},{"lisi",20},{"wangwu",10} };
 	int sz = sizeof(s) / sizeof(s[0]);
 	bubble(s, sz, sizeof(s[0]), cmp);
-	printf("Test for SSH again");
+	printf("fix a bug");
 	return 0;
 }
