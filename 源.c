@@ -8,11 +8,11 @@ typedef struct Stu
 }stu;
 int cmp(const void* e1, const void* e2)
 {
-	return ((stu*)e1)->age - ((stu*)e2)->age;
+	return -(((stu*)e1)->age - ((stu*)e2)->age);
 }
 bubble(void* base, int sz, int width, int(*cmp)(const void* ,const void* ))
 {
-	for (int i = 0;i < sz;i++)
+	for (int i = 0;i < sz-1;i++)
 	{
 		for (int j = 0;j < sz - i - 1;j++)
 		{
@@ -32,9 +32,13 @@ bubble(void* base, int sz, int width, int(*cmp)(const void* ,const void* ))
 }
 int main(void)
 {
-	stu s[3] = { {"zhangsan",40},{"lisi",20},{"wangwu",10} };
+	stu s[3] = { {"zhangsan",10},{"lisi",40},{"wangwu",30} };
 	int sz = sizeof(s) / sizeof(s[0]);
 	bubble(s, sz, sizeof(s[0]), cmp);
-	printf("fix a bug");
+	for (int i = 0;i < sz;i++)
+		printf("%s\n", s[i].name);
+
+
+
 	return 0;
 }
