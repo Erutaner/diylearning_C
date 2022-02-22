@@ -4,7 +4,7 @@
 size_t my_strlen(const char* parr)
 {
 	assert(parr != NULL);
-	int count = 0;
+	size_t count = 0;
 	while (*parr)
 	{
 		parr++;
