@@ -1,22 +1,22 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
 #include<assert.h>
-size_t my_strlen(const char* parr)
+char* my_strcpy(char* dest, const char* src)
 {
-	assert(parr != NULL);
-	size_t count = 0;
-	while (*parr)
+	assert(dest != NULL);
+	assert(src!= NULL);
+	char* ret = dest;
+	while (*dest++ = *src++)
 	{
-		parr++;
-		count++;
+
 	}
-	return count;
+	return ret;
 }
 int main(void)
 {
-	char* parr = "abc";
-	int len = my_strlen("1234567");
-	printf("%d", len);
-
+	char arr[] = "12345";
+	char arr1[] = "456";
+	my_strcpy(arr, arr1);
+	
 	return 0;
 }
