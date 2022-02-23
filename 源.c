@@ -1,22 +1,26 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
 #include<assert.h>
-char* my_strncpy(char* dest, const char* source,size_t count)
+char* my_strncat(char* dest, const char* source, size_t count)
 {
-	assert(dest && source);
+	assert(dest && count);
 	char* ret = dest;
-	while (count && (*dest++ = *source++))//注意里面的括号非常关键，这解释了为何下面的循环中使用--count
-		count--;
-	if (count)
-		while (--count)
-			*dest++ = '\0';
+	while (*dest)
+		dest++;
+	while (count--)//只有还有剩余次数时才会进入赋值模块
+		if (!(*dest++ = *source++))
+			return ret;
+	*dest = '\0';//只有剩余次数为零时仍未追加到source里的\0，才会来到这里，且只加一个\0结束
 	return ret;
 }
 int main(void)
 {
-	char arr[20] = "abcdefghg";
-	char arr1[3] = "z";
-	printf("%s",my_strncpy(arr, arr1, 3));
+	
+	char arr[30] = "abcdefgh\0xxxxxxxx";
+	char arr1[] = "123";
+	my_strncat(arr, arr1,2);
+
+	
   
 	return 0;
 }
