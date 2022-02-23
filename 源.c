@@ -1,30 +1,22 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
 #include<assert.h>
-int my_strcmp(const char* c1, const char* c2)
+char* my_strncpy(char* dest, const char* source,size_t count)
 {
-	assert(c1 && c2);
-	while (*c1 == *c2)
-	{
-		if (*c1 == 0)
-			return 0;
-		c1++;
-		c2++;
-	}
-	return (*c1 - *c2);
-
+	assert(dest && source);
+	char* ret = dest;
+	while (count && (*dest++ = *source++))//注意里面的括号非常关键，这解释了为何下面的循环中使用--count
+		count--;
+	if (count)
+		while (--count)
+			*dest++ = '\0';
+	return ret;
 }
 int main(void)
 {
-	char* p1 = "abcze";
-	char* p2 = "abcze";
-	
-	if (my_strcmp(p1, p2) > 0)
-		printf("p1>p2");
-	else if (my_strcmp(p1,p2) == 0)
-		printf("p1=p2");
-	else if (my_strcmp(p1,p2) < 0)
-		printf("p1<p2");
-
+	char arr[20] = "abcdefghg";
+	char arr1[3] = "z";
+	printf("%s",my_strncpy(arr, arr1, 3));
+  
 	return 0;
 }
