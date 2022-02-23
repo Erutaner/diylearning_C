@@ -1,22 +1,21 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
 #include<assert.h>
-char* my_strcpy(char* dest, const char* src)
+char* my_strcat(char* dst, const char* src)
 {
-	assert(dest != NULL);
-	assert(src!= NULL);
-	char* ret = dest;
-	while (*dest++ = *src++)
-	{
-
-	}
-	return ret;
+	assert(dst && src);
+	char* cp = dst;
+	while (*cp)
+		cp++;
+	while (*cp++ = *src++);
+	return (dst);
 }
 int main(void)
 {
-	char arr[] = "12345";
-	char arr1[] = "456";
-	my_strcpy(arr, arr1);
-	
+	char arr1[] = "hello \0xxxxxx";
+	char arr2[] = "world";
+	printf("%s", my_strcat(arr1, arr2));
+
+
 	return 0;
 }
