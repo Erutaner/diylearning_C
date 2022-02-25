@@ -1,26 +1,33 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
 #include<assert.h>
-char* my_strncat(char* dest, const char* source, size_t count)
+char* my_strstr(const char* str1, const char* str2)
 {
-	assert(dest && count);
-	char* ret = dest;
-	while (*dest)
-		dest++;
-	while (count--)//只有还有剩余次数时才会进入赋值模块
-		if (!(*dest++ = *source++))
-			return ret;
-	*dest = '\0';//只有剩余次数为零时仍未追加到source里的\0，才会来到这里，且只加一个\0结束
-	return ret;
+	assert(str1 && str2);
+	char* cp = (char*)str1;
+	char* s1, *s2;//注意s2前面也要加星号
+	if (!*str2)
+		return (char*)str1;
+	while (*cp)
+	{
+		s1 = cp;
+		s2 =(char*) str2;
+		while (*s1 && *s2 && !(*s1 - *s2))
+			s1++, s2++;
+		if (!*s2)
+			return cp;
+		cp++;
+	}
+	return NULL;
+
+
 }
 int main(void)
 {
-	
-	char arr[30] = "abcdefgh\0xxxxxxxx";
-	char arr1[] = "123";
-	my_strncat(arr, arr1,2);
 
-	
-  
+	char* str1 = "123456777";
+	char* str2 = "456";
+	printf("%s", my_strstr(str1, str2));
+
 	return 0;
 }
