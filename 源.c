@@ -1,25 +1,27 @@
 #define _CRT_SECURE_NO_WARNINGS 1
 #include<stdio.h>
 #include<assert.h>
-#include<ctype.h>
-void* my_memcpy(void* dest, const void* source, size_t num)
+void* my_memmove(void* dest, const void* src, size_t count)
 {
-	assert(dest && source);
+	assert(dest && src);
 	void* ret = dest;
-	while (num--)
-		*((char*)dest)++ = *((char*)source)++;
+	if (dest < src)
+		while (count--)
+			*((char*)dest)++ = *((char*)src)++;
+	else
+		while (count--)
+			*((char*)dest + count) = *((char*)src + count);//count的值在不断缩小，起到了内存左移的作用，不需++
 	return (ret);
 }
-typedef struct S
-{
-	char name[20];
-	int age;
-}S;
 int main(void)
 {
+	int arr[10] = { 1,2,3,4,5,6,7,8,9,10 };
+	my_memmove(arr, arr+3, 20);
+	for (int i = 0;i < 10;i++)
+	{
+		printf("%d ", *(arr + i));
+	}
+	
 
-	int arr[] = { 1,2,3,4 };
-	int arr2[4] = { 0 };
-	my_memcpy(arr2, arr, sizeof(arr));
 	return 0;
 }
